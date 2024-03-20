@@ -6,9 +6,7 @@ import json
 import requests
 import config
 import re
-import time
-import shutil
-import tempfile
+import sys
 
 from rich import pretty, print
 from rich.columns import Columns
@@ -18,6 +16,7 @@ from rich.progress import track
 from rich.markdown import Markdown
 
 from PyQt5.QtWidgets import QApplication, QFileDialog
+from PyQt5.QtGui import QIcon
 
 pretty.install()
 
@@ -140,7 +139,10 @@ def processIds():
 
         print("Select the [gold3]location[/gold3] for the output folder.")
 
-        folder = QFileDialog.getExistingDirectory(None, "Select a folder")
+        folder = QFileDialog().getExistingDirectory(
+            None,
+            "Select a folder",
+        )
 
         if isinstance(folder, str) and folder != "":
             newfolder = folder
@@ -221,11 +223,11 @@ def startProcess():
     app = QApplication.instance()
 
     if app is None:
-        app = QApplication([])
+        app = QApplication(sys.argv)
 
     print("Select the [green]Modpack[/green] file to continue.")
 
-    file, _ = QFileDialog.getOpenFileName(
+    file, _ = QFileDialog().getOpenFileName(
         None, "Select a file", "", "mrpack file (*.mrpack)"
     )
 
