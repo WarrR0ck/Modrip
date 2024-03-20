@@ -1,0 +1,9 @@
+/.venv
+/build
+/dist
+/main.spec
+/phase1.json
+/phase2.json
+/phase3.json
+/test.py
+/__pycache__
